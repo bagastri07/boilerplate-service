@@ -1,0 +1,6 @@
+.config.yml
+profile.cov
+coverage
+coverage.out
+.idea/
+.vendor/
