@@ -1,0 +1,16 @@
+env: "development"
+log_level: "debug"
+service: boilerplate-service
+ports:
+  http: "3000"
+  grpc: "3001"
+postgres:
+  host: "localhost:5433"
+  database: "boilerplate-service"
+  username: "bagastri07"
+  password: "bagastri07"
+  sslmode: "disable"
+  max_idle_conns: 2
+  conn_max_lifetime: "1h"
+  ping_interval: "5000ms"
+  retry_attempts: 3
