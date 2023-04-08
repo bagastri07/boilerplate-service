@@ -13,4 +13,9 @@ const (
 
 	DefaultMetricsReadTimeOut  = 5 * time.Second
 	DefaultMetricsWriteTimeout = 10 * time.Second
+
+	DefaultRedisDialTimeout  = 5 * time.Second
+	DefaultRedisWriteTimeout = 2 * time.Second
+	DefaultRedisReadTimeout  = 2 * time.Second
+	DefaultRedisCacheTTL     = 15 * time.Minute
 )

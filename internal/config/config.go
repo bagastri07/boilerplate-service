@@ -140,3 +140,27 @@ func GracefulShutdownTimeOut() time.Duration {
 	cfg := viper.GetString("graceful_shutdown_timeout")
 	return parseDuration(cfg, DefaultGracefulShutdownTimeOut)
 }
+
+func RedisCacheHost() string {
+	return viper.GetString("redis.cache_host")
+}
+
+func RedisDialTimeout() time.Duration {
+	cfg := viper.GetString("redis.dial_timeout")
+	return parseDuration(cfg, DefaultRedisDialTimeout)
+}
+
+func RedisWriteTimeout() time.Duration {
+	cfg := viper.GetString("redis.write_timeout")
+	return parseDuration(cfg, DefaultRedisWriteTimeout)
+}
+
+func RedisReadTimeout() time.Duration {
+	cfg := viper.GetString("redis.read_timeout")
+	return parseDuration(cfg, DefaultRedisReadTimeout)
+}
+
+func RedisCacheTTL() time.Duration {
+	cfg := viper.GetString("cache_ttl")
+	return parseDuration(cfg, DefaultRedisCacheTTL)
+}

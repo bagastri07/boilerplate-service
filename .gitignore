@@ -4,3 +4,5 @@ coverage
 coverage.out
 .idea/
 .vendor/
+/bin
+/tmp

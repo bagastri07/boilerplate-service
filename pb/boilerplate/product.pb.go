@@ -171,7 +171,7 @@ func (x *CreateProductRequest) GetPrice() float32 {
 	return 0
 }
 
-type CreateProductRespose struct {
+type CreateProductResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -179,8 +179,8 @@ type CreateProductRespose struct {
 	Message string `protobuf:"bytes,1,opt,name=message,proto3" json:"message"`
 }
 
-func (x *CreateProductRespose) Reset() {
-	*x = CreateProductRespose{}
+func (x *CreateProductResponse) Reset() {
+	*x = CreateProductResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_pb_boilerplate_product_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -188,13 +188,13 @@ func (x *CreateProductRespose) Reset() {
 	}
 }
 
-func (x *CreateProductRespose) String() string {
+func (x *CreateProductResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateProductRespose) ProtoMessage() {}
+func (*CreateProductResponse) ProtoMessage() {}
 
-func (x *CreateProductRespose) ProtoReflect() protoreflect.Message {
+func (x *CreateProductResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_pb_boilerplate_product_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -206,16 +206,63 @@ func (x *CreateProductRespose) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateProductRespose.ProtoReflect.Descriptor instead.
-func (*CreateProductRespose) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateProductResponse.ProtoReflect.Descriptor instead.
+func (*CreateProductResponse) Descriptor() ([]byte, []int) {
 	return file_pb_boilerplate_product_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreateProductRespose) GetMessage() string {
+func (x *CreateProductResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
+}
+
+type FindByIDRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+}
+
+func (x *FindByIDRequest) Reset() {
+	*x = FindByIDRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pb_boilerplate_product_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FindByIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindByIDRequest) ProtoMessage() {}
+
+func (x *FindByIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_pb_boilerplate_product_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindByIDRequest.ProtoReflect.Descriptor instead.
+func (*FindByIDRequest) Descriptor() ([]byte, []int) {
+	return file_pb_boilerplate_product_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FindByIDRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
 }
 
 var File_pb_boilerplate_product_proto protoreflect.FileDescriptor
@@ -240,12 +287,14 @@ var file_pb_boilerplate_product_proto_rawDesc = []byte{
 	0x12, 0x20, 0x0a, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18,
 	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
 	0x6f, 0x6e, 0x12, 0x14, 0x0a, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x02, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x22, 0x30, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x73, 0x65,
-	0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x42, 0x10, 0x5a, 0x0e, 0x70, 0x62,
-	0x2f, 0x62, 0x6f, 0x69, 0x6c, 0x65, 0x72, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x02, 0x52, 0x05, 0x70, 0x72, 0x69, 0x63, 0x65, 0x22, 0x31, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x21, 0x0a, 0x0f, 0x46,
+	0x69, 0x6e, 0x64, 0x42, 0x79, 0x49, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e,
+	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x42, 0x10,
+	0x5a, 0x0e, 0x70, 0x62, 0x2f, 0x62, 0x6f, 0x69, 0x6c, 0x65, 0x72, 0x70, 0x6c, 0x61, 0x74, 0x65,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -260,11 +309,12 @@ func file_pb_boilerplate_product_proto_rawDescGZIP() []byte {
 	return file_pb_boilerplate_product_proto_rawDescData
 }
 
-var file_pb_boilerplate_product_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_pb_boilerplate_product_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_pb_boilerplate_product_proto_goTypes = []interface{}{
-	(*Product)(nil),              // 0: pb.boilerplate.Product
-	(*CreateProductRequest)(nil), // 1: pb.boilerplate.CreateProductRequest
-	(*CreateProductRespose)(nil), // 2: pb.boilerplate.CreateProductRespose
+	(*Product)(nil),               // 0: pb.boilerplate.Product
+	(*CreateProductRequest)(nil),  // 1: pb.boilerplate.CreateProductRequest
+	(*CreateProductResponse)(nil), // 2: pb.boilerplate.CreateProductResponse
+	(*FindByIDRequest)(nil),       // 3: pb.boilerplate.FindByIDRequest
 }
 var file_pb_boilerplate_product_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -305,7 +355,19 @@ func file_pb_boilerplate_product_proto_init() {
 			}
 		}
 		file_pb_boilerplate_product_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateProductRespose); i {
+			switch v := v.(*CreateProductResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pb_boilerplate_product_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FindByIDRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -323,7 +385,7 @@ func file_pb_boilerplate_product_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pb_boilerplate_product_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

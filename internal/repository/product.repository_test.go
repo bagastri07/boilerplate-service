@@ -4,13 +4,15 @@ import (
 	"testing"
 
 	"github.com/bagastri07/boilerplate-service/internal/model"
+	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/assert"
 	"gorm.io/gorm"
 )
 
 func TestNewProductRepository(t *testing.T) {
 	type args struct {
-		DB *gorm.DB
+		DB    *gorm.DB
+		redis *redis.Client
 	}
 	tests := []struct {
 		name string
@@ -29,7 +31,7 @@ func TestNewProductRepository(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := NewProductRepository(tt.args.DB)
+			got := NewProductRepository(tt.args.DB, tt.args.redis)
 			assert.Equal(t, tt.want, got)
 		})
 	}

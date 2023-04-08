@@ -13,7 +13,7 @@ import (
 
 	"github.com/bagastri07/boilerplate-service/internal/config"
 	"github.com/bagastri07/boilerplate-service/internal/constant"
-	"github.com/bagastri07/boilerplate-service/internal/database"
+	"github.com/bagastri07/boilerplate-service/internal/infrastructure"
 	"github.com/bagastri07/boilerplate-service/internal/repository"
 	"github.com/bagastri07/boilerplate-service/internal/usecase"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -21,13 +21,14 @@ import (
 )
 
 func StartServer() {
-	database.InitializePostgresConn()
+	infrastructure.InitializePostgresConn()
+	infrastructure.InitializeRedisCon()
 
-	pgDB, err := database.PostgreSQL.DB()
+	pgDB, err := infrastructure.PostgreSQL.DB()
 	continueOrFatal(err)
 
 	// init repositories
-	productRepository := repository.NewProductRepository(database.PostgreSQL)
+	productRepository := repository.NewProductRepository(infrastructure.PostgreSQL, infrastructure.RedisClient)
 
 	// init usecases
 	productUsecase := usecase.NewProductUsecase(productRepository)
