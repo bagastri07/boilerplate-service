@@ -10,4 +10,7 @@ const (
 	DefaultDatabaseRetryAttempts   = 3
 
 	DefaultGracefulShutdownTimeOut = 30 * time.Second
+
+	DefaultMetricsReadTimeOut  = 5 * time.Second
+	DefaultMetricsWriteTimeout = 10 * time.Second
 )

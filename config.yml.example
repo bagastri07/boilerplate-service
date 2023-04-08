@@ -2,6 +2,10 @@ env: "development"
 log_level: "debug"
 ports:
   grpc: "7001"
+metrics:
+  port: "4000"
+  read_timeout: "5s"
+  write_timeout: "10s"
 postgres:
   host: "localhost:5433"
   database: "boilerplate-service"
