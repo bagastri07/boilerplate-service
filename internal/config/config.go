@@ -8,6 +8,12 @@ import (
 	"github.com/spf13/viper"
 )
 
+var (
+	// embed from build flag
+	serviceName    string
+	serviceVersion string
+)
+
 func parseDuration(in string, defaultDuration time.Duration) time.Duration {
 	dur, err := time.ParseDuration(in)
 	if err != nil {
@@ -29,8 +35,12 @@ func GetConf() {
 	}
 }
 
-func Service() string {
-	return viper.GetString("service")
+func ServiceName() string {
+	return serviceName
+}
+
+func ServiceVersion() string {
+	return serviceVersion
 }
 
 func Env() string {
@@ -39,10 +49,6 @@ func Env() string {
 
 func LogLevel() string {
 	return viper.GetString("log_level")
-}
-
-func HTTPPort() string {
-	return viper.GetString("ports.http")
 }
 
 func GRPCPort() string {
