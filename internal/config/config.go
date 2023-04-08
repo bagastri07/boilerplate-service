@@ -55,6 +55,20 @@ func GRPCPort() string {
 	return viper.GetString("ports.grpc")
 }
 
+func MetricsPort() string {
+	return viper.GetString("metrics.port")
+}
+
+func MetricsReadTimeout() time.Duration {
+	mrt := viper.GetString("metrics.read_timeout")
+	return parseDuration(mrt, DefaultMetricsReadTimeOut)
+}
+
+func MetricsWriteTimeout() time.Duration {
+	mrt := viper.GetString("metrics.read_timeout")
+	return parseDuration(mrt, DefaultMetricsWriteTimeout)
+}
+
 func DatabaseHost() string {
 	return viper.GetString("postgres.host")
 }

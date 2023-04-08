@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net"
+	"net/http"
 
 	grpcTransport "github.com/bagastri07/boilerplate-service/internal/delivery/grpc"
 	pb "github.com/bagastri07/boilerplate-service/pb/boilerplate"
@@ -15,6 +16,7 @@ import (
 	"github.com/bagastri07/boilerplate-service/internal/database"
 	"github.com/bagastri07/boilerplate-service/internal/repository"
 	"github.com/bagastri07/boilerplate-service/internal/usecase"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sirupsen/logrus"
 )
 
@@ -51,6 +53,7 @@ func StartServer() {
 	}()
 
 	startingMessage()
+	setupPrometheus()
 
 	wait := gracefulShutdown(context.Background(), config.GracefulShutdownTimeOut(), map[string]operation{
 		"postgressql connection": func(ctx context.Context) error {
@@ -63,4 +66,19 @@ func StartServer() {
 func startingMessage() {
 	logrus.Info(fmt.Sprintf("%s@%s is starting", config.ServiceName(), config.ServiceVersion()))
 	logrus.Info(fmt.Sprintf("grpc server started on :%s", config.GRPCPort()))
+}
+
+func setupPrometheus() {
+	http.Handle("/metrics", promhttp.Handler())
+
+	svc := &http.Server{
+		ReadTimeout:  config.MetricsReadTimeout(),
+		WriteTimeout: config.MetricsWriteTimeout(),
+		Addr:         fmt.Sprintf(":%s", config.MetricsPort()),
+	}
+
+	go func() {
+		_ = svc.ListenAndServe()
+	}()
+	logrus.Info(fmt.Sprintf("metrics server started on :%s", config.MetricsPort()))
 }
