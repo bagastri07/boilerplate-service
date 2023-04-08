@@ -4,7 +4,8 @@ SERVICE_NAME=boilerplate-service
 VERSION?= $(shell git describe --match 'v[0-9]*' --tags --always)
 PACKAGE_NAME=github.com/bagastri07/${SERVICE_NAME}
 
-build_args=-ldflags "-s -w -X $(PACKAGE_NAME)/internal/config.serviceVersion=$(VERSION) -X $(PACKAGE_NAME)/internal/config.serviceName=$(SERVICE_NAME)"
+build_loc=./bin/boilerplate-service
+build_args=-ldflags "-s -w -X $(PACKAGE_NAME)/internal/config.serviceVersion=$(VERSION) -X $(PACKAGE_NAME)/internal/config.serviceName=$(SERVICE_NAME)" -o ${build_loc} ./main.go
 changelog_args=-o CHANGELOG.md -tag-filter-pattern '^v'
 
 migrate_up=go run . migration --action=up
@@ -12,11 +13,11 @@ migrate_down=go run . migration --action=down
 
 .PHONY: run
 run:
-	go run $(build_args) . server
+	air --build.cmd 'go build ${build_args}' --build.bin "${build_loc} server"
 
 .IPHONY: build
 build:
-	go build $(build_args) -o ./bin/boilerplate-service ./main.go
+	go build $(build_args)
 
 .PHONY: migrate_up
 migrate_up:

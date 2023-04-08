@@ -37,14 +37,14 @@ func (m *MockProductServiceClient) EXPECT() *MockProductServiceClientMockRecorde
 }
 
 // CreateProduct mocks base method.
-func (m *MockProductServiceClient) CreateProduct(ctx context.Context, in *boilerplate.CreateProductRequest, opts ...grpc.CallOption) (*boilerplate.CreateProductRespose, error) {
+func (m *MockProductServiceClient) CreateProduct(ctx context.Context, in *boilerplate.CreateProductRequest, opts ...grpc.CallOption) (*boilerplate.CreateProductResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []interface{}{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "CreateProduct", varargs...)
-	ret0, _ := ret[0].(*boilerplate.CreateProductRespose)
+	ret0, _ := ret[0].(*boilerplate.CreateProductResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -54,6 +54,26 @@ func (mr *MockProductServiceClientMockRecorder) CreateProduct(ctx, in interface{
 	mr.mock.ctrl.T.Helper()
 	varargs := append([]interface{}{ctx, in}, opts...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateProduct", reflect.TypeOf((*MockProductServiceClient)(nil).CreateProduct), varargs...)
+}
+
+// FindByID mocks base method.
+func (m *MockProductServiceClient) FindByID(ctx context.Context, in *boilerplate.FindByIDRequest, opts ...grpc.CallOption) (*boilerplate.Product, error) {
+	m.ctrl.T.Helper()
+	varargs := []interface{}{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "FindByID", varargs...)
+	ret0, _ := ret[0].(*boilerplate.Product)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// FindByID indicates an expected call of FindByID.
+func (mr *MockProductServiceClientMockRecorder) FindByID(ctx, in interface{}, opts ...interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]interface{}{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindByID", reflect.TypeOf((*MockProductServiceClient)(nil).FindByID), varargs...)
 }
 
 // MockProductServiceServer is a mock of ProductServiceServer interface.
@@ -80,10 +100,10 @@ func (m *MockProductServiceServer) EXPECT() *MockProductServiceServerMockRecorde
 }
 
 // CreateProduct mocks base method.
-func (m *MockProductServiceServer) CreateProduct(arg0 context.Context, arg1 *boilerplate.CreateProductRequest) (*boilerplate.CreateProductRespose, error) {
+func (m *MockProductServiceServer) CreateProduct(arg0 context.Context, arg1 *boilerplate.CreateProductRequest) (*boilerplate.CreateProductResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateProduct", arg0, arg1)
-	ret0, _ := ret[0].(*boilerplate.CreateProductRespose)
+	ret0, _ := ret[0].(*boilerplate.CreateProductResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -92,6 +112,21 @@ func (m *MockProductServiceServer) CreateProduct(arg0 context.Context, arg1 *boi
 func (mr *MockProductServiceServerMockRecorder) CreateProduct(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CreateProduct", reflect.TypeOf((*MockProductServiceServer)(nil).CreateProduct), arg0, arg1)
+}
+
+// FindByID mocks base method.
+func (m *MockProductServiceServer) FindByID(arg0 context.Context, arg1 *boilerplate.FindByIDRequest) (*boilerplate.Product, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "FindByID", arg0, arg1)
+	ret0, _ := ret[0].(*boilerplate.Product)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// FindByID indicates an expected call of FindByID.
+func (mr *MockProductServiceServerMockRecorder) FindByID(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindByID", reflect.TypeOf((*MockProductServiceServer)(nil).FindByID), arg0, arg1)
 }
 
 // mustEmbedUnimplementedProductServiceServer mocks base method.
