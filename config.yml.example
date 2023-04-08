@@ -16,3 +16,9 @@ postgres:
   conn_max_lifetime: "1h"
   ping_interval: "5000ms"
   retry_attempts: 3
+redis:
+  cache_host: "redis://:pw@localhost:6379/0"
+  dial_timeout: 5
+  write_timeout: 2
+  read_timeout: 2
+  disable_caching: false
