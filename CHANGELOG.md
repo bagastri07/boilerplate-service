@@ -1,6 +1,12 @@
 # Boilerplate Service
 
 
+<a name="v1.0.2"></a>
+## [v1.0.2] - 2023-04-08
+### Code Improvements
+- change code convention
+
+
 <a name="v1.0.1"></a>
 ## [v1.0.1] - 2023-04-08
 ### Code Improvements
@@ -13,5 +19,6 @@
 - implement boilerplate service
 
 
-[Unreleased]: https://github.com/bagastri07/boilerplate-service/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/bagastri07/boilerplate-service/compare/v1.0.2...HEAD
+[v1.0.2]: https://github.com/bagastri07/boilerplate-service/compare/v1.0.1...v1.0.2
 [v1.0.1]: https://github.com/bagastri07/boilerplate-service/compare/v1.0.0...v1.0.1
