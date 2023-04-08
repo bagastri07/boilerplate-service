@@ -50,7 +50,7 @@ func StartServer() {
 		continueOrFatal(err)
 	}()
 
-	logrus.Info(fmt.Sprintf("grpc server started on :%s", config.GRPCPort()))
+	startingMessage()
 
 	wait := gracefulShutdown(context.Background(), config.GracefulShutdownTimeOut(), map[string]operation{
 		"postgressql connection": func(ctx context.Context) error {
@@ -58,4 +58,9 @@ func StartServer() {
 		},
 	})
 	<-wait
+}
+
+func startingMessage() {
+	logrus.Info(fmt.Sprintf("%s@%s is starting", config.ServiceName(), config.ServiceVersion()))
+	logrus.Info(fmt.Sprintf("grpc server started on :%s", config.GRPCPort()))
 }

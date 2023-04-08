@@ -1,15 +1,22 @@
 SHELL:=/bin/bash
 
-ifdef test_run
-	TEST_ARGS := -run $(test_run)
-endif
+SERVICE_NAME=boilerplate-service
+VERSION?= $(shell git describe --match 'v[0-9]*' --tags --always)
+PACKAGE_NAME=github.com/bagastri07/${SERVICE_NAME}
+
+build_args=-ldflags "-s -w -X $(PACKAGE_NAME)/internal/config.serviceVersion=$(VERSION) -X $(PACKAGE_NAME)/internal/config.serviceName=$(SERVICE_NAME)"
+changelog_args=-o CHANGELOG.md -tag-filter-pattern '^v'
 
 migrate_up=go run . migration --action=up
 migrate_down=go run . migration --action=down
 
 .PHONY: run
 run:
-	go run . server
+	go run $(build_args) . server
+
+.IPHONY: build
+build:
+	go build $(build_args) -o ./bin/boilerplate-service ./main.go
 
 .PHONY: migrate_up
 migrate_up:
@@ -64,12 +71,9 @@ test-only: ; $(info $(M) start unit testing...) @
 .PHONY: test
 test: lint test-only
 
-changelog_args=-o CHANGELOG.md -tag-filter-pattern '^v'
-
 .PHONY: changelog
 changelog:
 ifdef version
 	$(eval changelog_args=--next-tag $(version) $(changelog_args))
-	@echo $$(basename $$(git remote get-url origin) .git)@$(version) > VERSION
 endif
 	git-chglog $(changelog_args)

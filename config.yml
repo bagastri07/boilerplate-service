@@ -1,8 +1,6 @@
 env: "development"
 log_level: "debug"
-service: boilerplate-service
 ports:
-  http: "3000"
   grpc: "3001"
 postgres:
   host: "localhost:5433"
